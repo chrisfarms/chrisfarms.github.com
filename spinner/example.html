@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>spinner.js example</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<style type="text/css">
+		body {
+			color: #000;
+			background: #fff;
+			padding: 60px 10px 20px 20px;
+		}
+		.square {
+			color: #000;
+			background: #fff;
+			font-family: Helvetica, Arial, Sans-Serif;
+		}
+		
+		pre {
+			background:#ccc;
+		}
+	</style>
+	
+	<script>
+		var spinny;
+		function startSpinner(){
+			if(spinny)
+				spinny.remove();
+			var options = {};
+			var ins = document.getElementsByTagName('input');
+			for(var i=0; i<ins.length; i++)
+				options[ins[i].id] = ins[i].id=='color' ? ins[i].value : parseInt(ins[i].value);
+			spinny = new Spinner('busy1', options);
+			spinny.start();
+			// show code
+			var code = document.getElementById('code');
+			code.innerHTML = "var spinner = new Spinner(element,"+JSON.stringify(options)+");\n\
+spinner.start();\n\
+spinner.remove();"
+		}
+	</script>
+	
+</head>
+<body>
+	
+	<table>
+		<tr>
+			<td>segments</td>
+			<td><input id="segments" type="range" min="3" max="15" value="12"></td>
+		</tr>
+		<tr>
+			<td>stroke</td>
+			<td><input id="width" type="range" min="1" max="10" value="4"></td>
+		</tr>
+		<tr>
+			<td>length</td>
+			<td><input id="length" type="range" min="1" max="15" value="7"></td>
+		</tr>
+		<tr>
+			<td>speed</td>
+			<td><input id="speed" type="range" min="0" step="0.1" max="3" value="1.2"></td>
+		</tr>
+		<tr>
+			<td>space</td>
+			<td><input id="space" type="range" min="0.2" step="0.2" max="5" value="3"></td>
+		</tr>
+		<tr>
+			<td>color</td>
+			<td><input id="color" type="text" value="#555555"></td>
+		</tr>
+	</table>
+	<button id="btnStart" onclick="startSpinner()">Make Spinner</button>
+		
+	<div id="busy1" class="square">
+		<!-- a target area for your spinner -->
+	</div>
+	
+	<pre id="code">
+		
+	</pre>
+
+
+	<script type="text/javascript" charset="utf-8" src="spinner.js"></script>
+</body>
+</html>
