@@ -112,13 +112,13 @@ Ext.ux.TokenField = Ext.extend(Ext.form.Text,  {
             return;
         var idx,
             node = Ext.get(e.target);
-        if(node.hasCls('ux-token-clear')){
-            idx = node.up('.ux-token').getAttribute('data-idx');
-        }else if(node.hasCls('ux-token')){
-            idx = node.getAttribute('data-idx');
+        if((parent = node.up('.ux-token'))){
+            node = parent;
         }
-        if(idx)
+        if(node.hasCls('ux-token')){
+            idx = node.getAttribute('data-idx');
             this.removeToken(parseInt(idx-1,10));
+        }
         this.fieldEl.dom.focus();
     },
     
