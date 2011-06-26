@@ -11,7 +11,7 @@ Ext.ux.TokenField
 
 TokenField is the basis for a more complicated AutoComplete component (which I shall add to this library shortly), it is useful when you are asking people to fill in a field that should be comma-seperated, or if there are discrete items that you want to list, like tags.
 
-![example](http://dl.dropbox.com/u/22519236/Screenshots/0u.png)
+![example](http://dl.dropbox.com/u/22519236/Screenshots/0v.png)
 
 See the [demo here](http://chrisfarms.github.com/Ext.ux/examples/TokenField.html) and checkout the example config below for options.
 
