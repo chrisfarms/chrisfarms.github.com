@@ -13,7 +13,7 @@ TokenField is the basis for a more complicated AutoComplete component (which I s
 
 ![example](http://dl.dropbox.com/u/22519236/Screenshots/0u.png)
 
-See the demo here or checkout the example config below for options.
+See the [demo here](http://chrisfarms.github.com/Ext.ux/examples/TokenField.html) and checkout the example config below for options.
 
 ```javascript
 {
