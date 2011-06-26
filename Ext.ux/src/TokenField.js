@@ -6,7 +6,7 @@ Ext.ux.TokenField = Ext.extend(Ext.form.Text,  {
     returnType: 'array',
     
     // set this to split tokens on something other than comma
-    tokenSeperator: undefined,
+    tokenSeperator: ',',
     
     tokenTpl: [
         '<tpl for="tokens">',
@@ -19,7 +19,6 @@ Ext.ux.TokenField = Ext.extend(Ext.form.Text,  {
     
     KEY_BACK_SPACE: 8,
     KEY_ENTER: 13,
-    KEY_COMMA: 188,
 
     // fetch the current value as an array
     getData: function(){
@@ -89,17 +88,22 @@ Ext.ux.TokenField = Ext.extend(Ext.form.Text,  {
         if(!this.fieldEl)
             return;
         // trigger event for some keys
-        switch(e.browserEvent.keyCode){
-            case this.KEY_BACK_SPACE:
-                if(!this.getInputValue())
+        var c = this.fieldEl.dom.value[this.fieldEl.dom.value.length-1];
+        if(e.browserEvent.keyCode == this.KEY_BACK_SPACE){
+            if(!this.fieldEl.dom.value){
+                if(this.preventRemoveToken){
+                    this.preventRemoveToken = false;
+                }else{
                     this.removeToken(-1);
-                break;
-            case this.KEY_ENTER:
-            case this.tokenSeperator: 
-                this.appendToken();
-                this.clearInput();
+                }
+            }
+            return;
+        }else if(e.browserEvent.keyCode == this.KEY_ENTER || c == this.tokenSeperator){
+            this.appendToken();
+            this.clearInput();
         }
         this.resizeInput();
+        this.preventRemoveToken = true;
     },
     
     onFieldTap: function(e){
@@ -121,8 +125,6 @@ Ext.ux.TokenField = Ext.extend(Ext.form.Text,  {
     },
     
     initComponent: function(){
-        if(!this.tokenSeperator)
-            this.tokenSeperator = this.KEY_COMMA;
         Ext.ux.TokenField.superclass.initComponent.apply(this,arguments);
         // init template
         this.renderTpl = [
