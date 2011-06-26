@@ -125,8 +125,9 @@ Ext.ux.TokenField = Ext.extend(Ext.form.Text,  {
             idx = token.getAttribute('data-idx');
             this.removeToken(parseInt(idx-1,10));            
         }
+        // defer this otherwise iOS will cancel the tap event
         Ext.defer(function(){
-            this.fieldEl.dom.focus();
+            this.focus();
         },10,this);
     },
     
