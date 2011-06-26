@@ -119,7 +119,9 @@ Ext.ux.TokenField = Ext.extend(Ext.form.Text,  {
             idx = node.getAttribute('data-idx');
             this.removeToken(parseInt(idx-1,10));
         }
-        this.fieldEl.dom.focus();
+        Ext.defer(function(){
+            this.fieldEl.dom.focus();
+        },10,this);
     },
     
     initRenderData: function() {
