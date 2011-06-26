@@ -111,7 +111,7 @@ Ext.ux.TokenField = Ext.extend(Ext.form.Text,  {
         if(!this.fieldEl)
             return;
         node = Ext.get(e.target);
-        if(node.hasCls('ux-token-clear')){
+        if(node.hasCls('ux-token-clear') || node.hasCls('ux-token')){
             var idx = node.up('.ux-token').getAttribute('data-idx');
             this.removeToken(parseInt(idx-1,10));
         }

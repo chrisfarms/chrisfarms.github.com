@@ -197,7 +197,8 @@ Ext.ux.IndexedStore = Ext.extend(Ext.data.Store,{
     getIndexFor: function(records){
         return new ObjectIndex({
             records: this.getRange(),
-            fields: this.model.searchFields(),
+            fields: this.searchFields || this.model.searchFields ? 
+                this.model.searchFields() : [],
             getter: records.data ? false : 'get'
         });
     },
