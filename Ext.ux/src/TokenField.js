@@ -10,10 +10,10 @@ Ext.ux.TokenField = Ext.extend(Ext.form.Text,  {
     
     tokenTpl: [
         '<tpl for="tokens">',
-            '<span class="ux-token" data-idx="{#}">',
+            '<a class="ux-token" data-idx="{#}">',
                 '{.}', 
-                '<a href="#" class="ux-token-clear"></a>',
-            '</span>',
+                '<span href="#" class="ux-token-clear"></span>',
+            '</a>',
         '</tpl>'
     ],
     
@@ -148,7 +148,7 @@ Ext.ux.TokenField = Ext.extend(Ext.form.Text,  {
         // listen for keypresses
         this.on('keyup',this.onChangeInput);
         // 
-        this.on('click',this.onFieldTap, this, {element:"el"});
+        this.on('singletap',this.onFieldTap, this, {element:"el"});
     }
 });
 
