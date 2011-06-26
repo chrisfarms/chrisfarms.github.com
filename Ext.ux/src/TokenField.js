@@ -148,7 +148,7 @@ Ext.ux.TokenField = Ext.extend(Ext.form.Text,  {
         // listen for keypresses
         this.on('keyup',this.onChangeInput);
         // 
-        this.on('tap',this.onFieldTap, this, {element:"el"});
+        this.on('touchstart',this.onFieldTap, this, {element:"el"});
     }
 });
 
