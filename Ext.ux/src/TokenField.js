@@ -110,11 +110,15 @@ Ext.ux.TokenField = Ext.extend(Ext.form.Text,  {
         e.preventDefault();
         if(!this.fieldEl)
             return;
-        node = Ext.get(e.target);
-        if(node.hasCls('ux-token-clear') || node.hasCls('ux-token')){
-            var idx = node.up('.ux-token').getAttribute('data-idx');
-            this.removeToken(parseInt(idx-1,10));
+        var idx,
+            node = Ext.get(e.target);
+        if(node.hasCls('ux-token-clear')){
+            idx = node.up('.ux-token').getAttribute('data-idx');
+        }else if(node.hasCls('ux-token')){
+            idx = node.getAttribute('data-idx');
         }
+        if(idx)
+            this.removeToken(parseInt(idx-1,10));
         this.fieldEl.dom.focus();
     },
     
