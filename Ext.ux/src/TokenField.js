@@ -8,6 +8,10 @@ Ext.ux.TokenField = Ext.extend(Ext.form.Text,  {
     // set this to split tokens on something other than comma
     tokenSeperator: ',',
     
+    // set this to true if you want to make it easier to remove tokens by tapping anywhere
+    // on the token bubble element
+    largeTapArea: false,
+    
     tokenTpl: [
         '<tpl for="tokens">',
             '<a class="ux-token" data-idx="{#}">',
@@ -111,13 +115,15 @@ Ext.ux.TokenField = Ext.extend(Ext.form.Text,  {
         if(!this.fieldEl)
             return;
         var idx,
+            token,
             node = Ext.get(e.target);
-        if((parent = node.up('.ux-token'))){
-            node = parent;
-        }
-        if(node.hasCls('ux-token')){
-            idx = node.getAttribute('data-idx');
-            this.removeToken(parseInt(idx-1,10));
+        if(node.hasCls('ux-token-clear') && (parent = node.up('.ux-token')))
+            token = parent;
+        if(this.largeTapArea && node.hasCls('ux-token'))
+            token = node;
+        if(token){
+            idx = token.getAttribute('data-idx');
+            this.removeToken(parseInt(idx-1,10));            
         }
         Ext.defer(function(){
             this.fieldEl.dom.focus();

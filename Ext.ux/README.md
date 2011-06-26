@@ -19,6 +19,7 @@ See the [demo here](http://chrisfarms.github.com/Ext.ux/examples/TokenField.html
 {
     xtype: 'tokenfield',         // the TokenField xtype
     tokenSeperator: ',',         // [optional] a single character to use as the delimiter 
+    largeTapArea: false,         // [optional] set to true to cause a tap anywhere on token to remove it
     name:'tags',                 // standard Field name
     label:'Tags',                // [optional] standard Field label
     returnType: 'string',        // [optional] choice of either 'string' or 'array' return-type default is 'array'
